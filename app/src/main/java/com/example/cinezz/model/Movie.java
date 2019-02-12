@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Movie implements Serializable {
     String title;
-    String releaseDate;
+    Release release;
     Genre[] genre;
     Poster poster;
     Trailer trailer;
@@ -17,4 +17,21 @@ public class Movie implements Serializable {
     public Statistics getStatistics() {
         return statistics;
     }
+
+    public String getGenre() {
+        String str = "";
+        for (Genre g : genre) {
+            if (str != "")
+                str += ", ";
+            str += g.getName();
+        }
+        return str;
+    }
+
+    public Release getRelease() { return release; }
+    public String getReleaseDate() { return release.getReleaseDate(); }
+
+    public String getPoster() { return poster.getHref(); }
+
+    public String getTrailer(){ return trailer.getHref();}
 }

@@ -1,6 +1,7 @@
 package com.example.cinezz;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,10 @@ import android.widget.TextView;
 
 import com.example.cinezz.model.Global;
 import com.example.cinezz.model.MovieShowtime;
+import com.squareup.picasso.Picasso;
+
+import java.io.InputStream;
+import java.net.URL;
 
 public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.MovieViewHolder>{
 
@@ -46,6 +51,9 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Mo
         holder.pressRate.setText(movieTime.getStats().getPressRating());
         holder.userRate.setText(movieTime.getStats().getUserRating());
 
+        String imageUri = movieTime.getOnShow().getMovie().getPoster();
+        Picasso.with(holder.itemView.getContext()).load(imageUri).into(holder.poster);
+
         holder.itemView.setOnClickListener(v -> listener.onMovieClicked(movieTime));
     }
 
@@ -58,9 +66,11 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Mo
         TextView title;
         TextView pressRate;
         TextView userRate;
+        ImageView poster;
 
         MovieViewHolder(View view) {
             super(view);
+            poster = view.findViewById(R.id.poster);
             title = view.findViewById(R.id.titleId);
             pressRate = view.findViewById(R.id.pressRateId);
             userRate = view.findViewById(R.id.userRateId);

@@ -18,4 +18,6 @@ public class MovieShowtime implements Serializable {
     public Statistics getStats(){
         return onShow.getMovie().getStatistics();
     }
+
+    public Version getVersion() { return version; }
 }
