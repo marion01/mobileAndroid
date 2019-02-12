@@ -1,5 +1,7 @@
 package com.example.cinezz.model;
 
-public class Poster {
+import java.io.Serializable;
+
+public class Poster implements Serializable {
     String href;
 }

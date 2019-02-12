@@ -1,5 +1,7 @@
 package com.example.cinezz.model;
 
-public class Genre {
+import java.io.Serializable;
+
+public class Genre implements Serializable {
     String name;
 }

@@ -1,6 +1,8 @@
 package com.example.cinezz.model;
 
-public class Version {
+import java.io.Serializable;
+
+public class Version implements Serializable {
     Boolean original;
     String name;
 }

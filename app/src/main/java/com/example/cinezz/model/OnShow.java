@@ -2,7 +2,9 @@ package com.example.cinezz.model;
 
 import com.example.cinezz.model.Movie;
 
-public class OnShow {
+import java.io.Serializable;
+
+public class OnShow implements Serializable {
     Movie movie;
 
     public Movie getMovie() {

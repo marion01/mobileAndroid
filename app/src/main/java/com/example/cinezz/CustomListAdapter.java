@@ -17,8 +17,18 @@ import com.example.cinezz.model.MovieShowtime;
 public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.MovieViewHolder>{
 
     MovieShowtime[] movieShowTimes;
+    private OnMovieClickedListener listener;
 
-    public CustomListAdapter(MovieShowtime[] movieShowTimesParam){
+    public CustomListAdapter(MovieShowtime[] movieShowTimesParam, OnMovieClickedListener onMovieClickedListener){
+        movieShowTimes = movieShowTimesParam;
+        this.listener = onMovieClickedListener;
+    }
+
+    public CustomListAdapter(){
+        movieShowTimes = null;
+    }
+
+    public void setMovieShowTimes(MovieShowtime[] movieShowTimesParam){
         movieShowTimes = movieShowTimesParam;
     }
 
@@ -35,7 +45,8 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Mo
         holder.title.setText(movieTime.getTitle());
         holder.pressRate.setText(movieTime.getStats().getPressRating());
         holder.userRate.setText(movieTime.getStats().getUserRating());
-      //  holder.poster.
+
+        holder.itemView.setOnClickListener(v -> listener.onMovieClicked(movieTime));
     }
 
     @Override
@@ -47,15 +58,22 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Mo
         TextView title;
         TextView pressRate;
         TextView userRate;
-       // ImageView poster;
 
         MovieViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.titleId);
             pressRate = view.findViewById(R.id.pressRateId);
             userRate = view.findViewById(R.id.userRateId);
-          //  poster = view.findViewById(R.id.posterId);
         }
     }
 
+    public interface OnMovieClickedListener {
+        void onMovieClicked(MovieShowtime movieShowtime);
+    }
+
 }
+
+
+
+
+

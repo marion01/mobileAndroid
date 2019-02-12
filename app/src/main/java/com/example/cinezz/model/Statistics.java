@@ -1,6 +1,8 @@
 package com.example.cinezz.model;
 
-public class Statistics {
+import java.io.Serializable;
+
+public class Statistics implements Serializable {
     String pressRating;
     String userRating;
 

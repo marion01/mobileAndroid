@@ -1,6 +1,8 @@
 package com.example.cinezz.model;
 
-public class MovieShowtime {
+import java.io.Serializable;
+
+public class MovieShowtime implements Serializable {
     OnShow onShow;
     Version version;
     String display;
