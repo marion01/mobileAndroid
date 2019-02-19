@@ -6,6 +6,7 @@ public class MovieShowtime implements Serializable {
     OnShow onShow;
     Version version;
     String display;
+    Scr[] scr;
 
     public OnShow getOnShow() {
         return onShow;
@@ -20,4 +21,8 @@ public class MovieShowtime implements Serializable {
     }
 
     public Version getVersion() { return version; }
+
+    public String getDisplay() { return display; }
+
+    public Scr[] getScr() { return scr; }
 }

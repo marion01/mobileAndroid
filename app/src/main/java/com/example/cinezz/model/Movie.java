@@ -9,6 +9,7 @@ public class Movie implements Serializable {
     Poster poster;
     Trailer trailer;
     Statistics statistics;
+    String runtime;
 
     public String getTitle() {
         return title;
@@ -34,4 +35,6 @@ public class Movie implements Serializable {
     public String getPoster() { return poster.getHref(); }
 
     public String getTrailer(){ return trailer.getHref();}
+
+    public String getRuntime(){ return runtime;}
 }

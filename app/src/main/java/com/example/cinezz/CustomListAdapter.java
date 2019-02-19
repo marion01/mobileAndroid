@@ -27,6 +27,7 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Mo
     public CustomListAdapter(MovieShowtime[] movieShowTimesParam, OnMovieClickedListener onMovieClickedListener){
         movieShowTimes = movieShowTimesParam;
         this.listener = onMovieClickedListener;
+
     }
 
     public CustomListAdapter(){
@@ -41,6 +42,8 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Mo
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listlayout_row, parent, false);
+
+
         return new MovieViewHolder(view);
     }
 
@@ -48,8 +51,14 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Mo
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         MovieShowtime movieTime = movieShowTimes[position];
         holder.title.setText(movieTime.getTitle());
-        holder.pressRate.setText(movieTime.getStats().getPressRating());
-        holder.userRate.setText(movieTime.getStats().getUserRating());
+        holder.genre.setText(movieTime.getOnShow().getMovie().getGenre());
+        double time = Float.parseFloat(movieTime.getOnShow().getMovie().getRuntime());
+        int heure = (int)time/3600;
+        int min = (int)(time - heure*3600)/60;
+        String timeString = Integer.toString(heure) + "h" + Integer.toString(min);
+        holder.runtime.setText(timeString);
+        holder.genreLabel.setText("Genre :");
+        holder.timeLabel.setText("Durée :");
 
         String imageUri = movieTime.getOnShow().getMovie().getPoster();
         Picasso.with(holder.itemView.getContext()).load(imageUri).into(holder.poster);
@@ -64,16 +73,20 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Mo
 
     static class MovieViewHolder extends RecyclerView.ViewHolder {
         TextView title;
-        TextView pressRate;
-        TextView userRate;
         ImageView poster;
+        TextView genre;
+        TextView runtime;
+        TextView genreLabel;
+        TextView timeLabel;
 
         MovieViewHolder(View view) {
             super(view);
             poster = view.findViewById(R.id.poster);
             title = view.findViewById(R.id.titleId);
-            pressRate = view.findViewById(R.id.pressRateId);
-            userRate = view.findViewById(R.id.userRateId);
+            genre = view.findViewById(R.id.genre);
+            runtime = view.findViewById(R.id.time);
+            timeLabel = view.findViewById(R.id.timeLabel);
+            genreLabel = view.findViewById(R.id.genreLabel);
         }
     }
 
